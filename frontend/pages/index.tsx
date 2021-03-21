@@ -28,7 +28,7 @@ const Home: React.FC<IToursProps> = ({ tours }) => {
 export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch(`http://localhost:3000/api/v1/tours`)
 
-  const { data } = await res.json()
+  const  {data}  = await res.json()
   const { tours } = data
   return {
     props: { tours },

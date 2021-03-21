@@ -1,3 +1,5 @@
+import Button from './Button'
+
 interface MainProps {}
 
 export const Main: React.FC<MainProps> = () => {
@@ -7,9 +9,17 @@ export const Main: React.FC<MainProps> = () => {
       <div className="mt-16 text-6xl tracking-widest font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-600 via-purple-500 to-green-400">
         Let's discover!
       </div>
-      <div className="text-3xl py-8 tracking-widest font-bold ">WHY WAIT? TRAVEL WITH TWORIST</div>
-      <div className="text-xl pb-6 tracking-widest text-gray-400">Your ultimate guide!</div>
-      <button className="btn-yellow">
+      <div className="text-3xl py-8 tracking-widest font-bold ">
+        WHY WAIT? TRAVEL WITH TWORIST
+      </div>
+      <div className="text-xl pb-6 tracking-widest text-gray-400">
+        Your ultimate guide!
+      </div>
+      {/* <button className="btn-yellow"> */}
+      <Button
+        color="indigo"
+        alt-descripton="Hero section button to go to all tours cards"
+      >
         TRAVEL
         <svg
           className="mx-auto w-5 h-5 my-2 animate-bounce"
@@ -23,7 +33,8 @@ export const Main: React.FC<MainProps> = () => {
             clipRule="evenodd"
           />
         </svg>{' '}
-      </button>
+      </Button>
+      {/* </button> */}
     </section>
   )
 }

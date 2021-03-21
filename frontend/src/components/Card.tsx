@@ -1,6 +1,11 @@
 import Image from 'next/image'
 interface CardProps {}
-
+  
+import React, {
+	ButtonHTMLAttributes,
+	DetailedHTMLProps,
+	ReactNode,
+  } from "react";
 export interface ITours {
   ratingsAverage: Number
   ratingsQuantity: Number
@@ -20,6 +25,27 @@ export interface ITours {
   stops: string | number
 }
 
+const sizeClassnames = {
+	big: "py-2 px-6 text-sm rounded-lg",
+	small: "px-2 py-1 text-xs rounded-md",
+  };
+  
+  const colorClassnames = {
+	primary:
+	  "text-button bg-accent hover:bg-accent-hover disabled:text-accent-disabled disabled:bg-accent-hover",
+	secondary:
+	  "text-button bg-primary-700 hover:bg-primary-600 disabled:text-primary-300",
+  };
+
+  export type ButtonProps = DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+> & {
+  size?: keyof typeof sizeClassnames;
+  color?: keyof typeof colorClassnames;
+  loading?: boolean;
+  icon?: ReactNode;
+};
 const Card: React.FC<ITours> = props => {
   const convertDate = (date: string) => {
     const dt = new Date(date)
@@ -30,9 +56,9 @@ const Card: React.FC<ITours> = props => {
     return str.toUpperCase()
   }
   return (
-    <div className="flex flex-col dark:bg-gray-800 transition transform ease-in-out duration-300 hover:scale-105 max-w-sm shadow-2xl rounded-sm overflow-x-hidden">
+    <div className="group flexflex-col dark:bg-gray-800 transition transform ease-in-out duration-300 hover:scale-105 max-w-sm shadow-2xl rounded-sm overflow-x-hidden">
       <div className="relative bg-gray-700">
-        <span className="absolute inset-0 opacity-30 hover:opacity-60 transition transform ease-in-out duration-300 text-black z-50 bg-black"></span>
+        <span className="absolute inset-0 opacity-30 group-hover:opacity-60 transition transform ease-in-out duration-300 text-black z-50 bg-black"></span>
         <span className="px-4 py-2 opacity-80 absolute text-2xl font-semibold text-black top-40 left-0 z-50 bg-yellow-button">
           {props.name}
         </span>
@@ -42,7 +68,7 @@ const Card: React.FC<ITours> = props => {
         <div className="text-md font-medium">{`${convertToUC(props.difficulty)} ${
           props.stops ?? ''
         }-DAYS TOUR`}</div>
-        <div className="text-sm  my-2">{props.summary}</div>
+        <div className="text-sm lavender  my-2">{props.summary}</div>
         <div className="grid grid-cols-2 grid-rows-2 my-6 gap-x-12 gap-y-4">
           <div className="text-md  flex align-center">
             <svg
@@ -113,7 +139,7 @@ const Card: React.FC<ITours> = props => {
             <span className="font-normal text-sm"> Rating ({props.ratingsQuantity})</span>
           </div>
         </div>
-        <button className="px-8 h-14 my-auto bg-gray-900 rounded-3xl text-white">DETAILS</button>
+        <button className="px-8 h-14 my-auto bg-gray-900 shadow-xl rounded-md text-white focus:outline-none focus:ring focus:ring-offset-2 focus:ring-black">DETAILS</button>
       </div>
     </div>
   )
